@@ -1,47 +1,47 @@
 package sfl.api.skeleton;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/v1/apiname")
 public class APISkeletonController {
 	
+	@Autowired
+	private FooService service;
 
-	@GetMapping("/status")
-	public String status(@RequestParam(value = "service", defaultValue = "ALL") String service) {
-	
-		String status = "KO";
-		switch (service){
-			case "ALL": 
-						status = "ALL OK!";
-						break;
-			default: 
-					status = "OK";
-					break;
-		}
-		
-		return "Service status is "+status;
+	@GetMapping
+	public List<Object> getAll() {
+		return service.getList();
 	}
 
-	
-	@GetMapping("/v1/apiname/{id}")
-    public String single(@PathVariable String id) {
-        // Implement GET method
-		return "!!To be implemented!!, GET single object {" + id + "}";
-    }
-	
-	
-	@GetMapping("/v1/apiname/")
-	public String list() {
-		return "!!To be implemented!!, GET list of objects";
+	@GetMapping("/{id}")
+	public Object getById(@PathVariable("id") String id) {
+		return service.getById(id);
 	}
-	
 
-	@GetMapping("/error")
-	public String error() {
-		return "Error fallback to be implemented!!";
+	@PostMapping
+	public Object create(@RequestBody Object contact) {
+		return service.create(contact);
+	}
+
+	@PutMapping("/{id}")
+	public Object update(@PathVariable("id") String id, @RequestBody Object contact) {
+		return service.update(id, contact);
+	}
+
+	@DeleteMapping("/{id}")
+	public String delete(@PathVariable("id") String id) {
+		return service.delete(id);
 	}
 
 	
