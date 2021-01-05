@@ -1,13 +1,13 @@
-package com.bbtutorials.echo;
+package sfl.api.skeleton;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class EchoApplication {
+public class APISkeletonApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(EchoApplication.class, args);
+		SpringApplication.run(APISkeletonApplication.class, args);
 	}
 
 }
