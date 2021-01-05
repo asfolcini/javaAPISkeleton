@@ -30,13 +30,13 @@ public class APISkeletonController {
 	}
 
 	@PostMapping
-	public Object create(@RequestBody Object contact) {
-		return service.create(contact);
+	public Object create(@RequestBody Object obj) {
+		return service.create(obj);
 	}
 
 	@PutMapping("/{id}")
-	public Object update(@PathVariable("id") String id, @RequestBody Object contact) {
-		return service.update(id, contact);
+	public Object update(@PathVariable("id") String id, @RequestBody Object obj) {
+		return service.update(id, obj);
 	}
 
 	@DeleteMapping("/{id}")
